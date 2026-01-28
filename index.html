@@ -313,6 +313,236 @@
         gap: 40px;
       }
     }
+
+    /* ===== FOOTER ===== */
+    footer {
+      padding: 60px 20px 30px;
+      border-top: 1px solid rgba(255,255,255,.05);
+      margin-top: 60px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-section h4 {
+      font-size: 1.1rem;
+      margin-bottom: 20px;
+      color: var(--accent);
+    }
+
+    .footer-section ul {
+      list-style: none;
+    }
+
+    .footer-section a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.95rem;
+      display: block;
+      margin-bottom: 12px;
+      transition: color .3s;
+    }
+
+    .footer-section a:hover {
+      color: var(--accent);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 15px;
+      margin-top: 10px;
+      justify-content: center;
+    }
+
+    .social-links a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(56,189,248,.1);
+      border: 1px solid rgba(56,189,248,.2);
+      color: var(--accent);
+      transition: all .3s;
+    }
+
+    .social-links a:hover {
+      background: rgba(56,189,248,.2);
+      transform: translateY(-3px);
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,.05);
+      padding-top: 30px;
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 768px) {
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+    }
+
+    /* ===== SCROLL ANIMATIONS ===== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slide-in-left {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+
+    .slide-in-left.visible {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    /* ===== BOTÃO VOLTAR AO TOPO ===== */
+    #scrollTopBtn {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--gradient);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 99;
+      box-shadow: 0 4px 15px rgba(56,189,248,.3);
+      transition: all 0.3s;
+    }
+
+    #scrollTopBtn.show {
+      display: flex;
+    }
+
+    #scrollTopBtn:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 25px rgba(56,189,248,.5);
+    }
+
+    /* ===== COMO FUNCIONA TIMELINE ===== */
+    .timeline {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 40px;
+      position: relative;
+    }
+
+    .timeline::before {
+      content: "";
+      position: absolute;
+      top: 30px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #38bdf8, #6366f1, transparent);
+      z-index: 0;
+    }
+
+    @media (max-width: 768px) {
+      .timeline::before {
+        left: 20px;
+        right: auto;
+        width: 2px;
+        height: 100%;
+        top: 0;
+        background: linear-gradient(180deg, #38bdf8, #6366f1, transparent);
+      }
+    }
+
+    .timeline-item {
+      position: relative;
+      text-align: center;
+      z-index: 1;
+    }
+
+    .timeline-number {
+      width: 60px;
+      height: 60px;
+      background: var(--gradient);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 1.5rem;
+      margin: 0 auto 20px;
+      color: #020617;
+      box-shadow: 0 0 20px rgba(56,189,248,.3);
+    }
+
+    .timeline-item h3 {
+      color: var(--accent);
+      margin-bottom: 12px;
+      font-size: 1.1rem;
+    }
+
+    .timeline-item p {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    /* ===== CTA SECTION ===== */
+    .cta-section {
+      background: linear-gradient(135deg, rgba(56,189,248,.1), rgba(99,102,241,.1));
+      border: 1px solid rgba(56,189,248,.2);
+      border-radius: 16px;
+      padding: 60px 40px;
+      text-align: center;
+      margin: 80px auto;
+      max-width: 700px;
+    }
+
+    .cta-section h2 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+    }
+
+    .cta-section p {
+      color: var(--muted);
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 768px) {
+      .cta-section {
+        padding: 40px 20px;
+        margin: 60px auto;
+      }
+
+      .timeline::before {
+        left: 20px;
+        right: auto;
+        width: 2px;
+        height: 100%;
+      }
+    }
   </style>
 </head>
 
@@ -440,6 +670,38 @@
   </div>
 </section>
 
+<section id="como-funciona">
+  <h2>Como Funciona</h2>
+  <div class="timeline fade-in">
+    <div class="timeline-item">
+      <div class="timeline-number">1</div>
+      <h3>Consultoria</h3>
+      <p>Entendemos seus desafios, metas e visão. Analisamos profundamente seu negócio.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-number">2</div>
+      <h3>Planejamento</h3>
+      <p>Desenho da solução perfeita. Definimos tecnologias, prazos e recursos necessários.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-number">3</div>
+      <h3>Desenvolvimento</h3>
+      <p>Criação de alta qualidade com acompanhamento. Você participa de cada etapa.</p>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-number">4</div>
+      <h3>Suporte Contínuo</h3>
+      <p>Lançamento e acompanhamento. Evoluimos junto com seu negócio.</p>
+    </div>
+  </div>
+</section>
+
+<div class="cta-section fade-in">
+  <h2>Pronto para transformar seu negócio?</h2>
+  <p>Não espere mais. Converse com um especialista e descubra como podemos ajudar.</p>
+  <a href="#contato" class="btn">Fale Conosco Agora</a>
+</div>
+
 <section id="sobre">
   <h2>Sobre nós</h2>
   
@@ -472,19 +734,115 @@
 </section>
 
 <section id="contato">
-  <h2>Contato</h2>
-  <div class="grid">
-    <div class="card">
-      <p>Email: contato@suaempresa.com</p>
-      <p>WhatsApp: (00) 00000-0000</p>
-      <p>LinkedIn: linkedin.com/company/suaempresa</p>
-    </div>
+  <h2>Entrar em Contato</h2>
+  <div style="max-width: 500px; margin: 0 auto;">
+    <form style="display: flex; flex-direction: column; gap: 15px;">
+      <input type="text" placeholder="Seu nome" required style="padding: 12px; border: 1px solid rgba(56,189,248,.2); background: rgba(56,189,248,.05); border-radius: 8px; color: var(--text); font-family: inherit;">
+      <input type="email" placeholder="Seu email" required style="padding: 12px; border: 1px solid rgba(56,189,248,.2); background: rgba(56,189,248,.05); border-radius: 8px; color: var(--text); font-family: inherit;">
+      <input type="tel" placeholder="Seu telefone/WhatsApp" style="padding: 12px; border: 1px solid rgba(56,189,248,.2); background: rgba(56,189,248,.05); border-radius: 8px; color: var(--text); font-family: inherit;">
+      <textarea placeholder="Sua mensagem" rows="5" required style="padding: 12px; border: 1px solid rgba(56,189,248,.2); background: rgba(56,189,248,.05); border-radius: 8px; color: var(--text); font-family: inherit; resize: vertical;"></textarea>
+      <button type="submit" style="padding: 12px; background: linear-gradient(135deg, #38bdf8, #6366f1); color: white; border: none; border-radius: 8px; font-weight: 500; cursor: pointer; transition: opacity .3s;">Enviar Mensagem</button>
+    </form>
   </div>
 </section>
 
 <footer>
-  © 2026 Sua Empresa — Desenvolvimento de Software
+  <div class="footer-content">
+    <div class="footer-section">
+      <h4>Serviços</h4>
+      <ul>
+        <li><a href="#servicos">Automação</a></li>
+        <li><a href="#servicos">Sistemas</a></li>
+        <li><a href="#servicos">Inteligência Artificial</a></li>
+        <li><a href="#servicos">Dashboards</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Empresa</h4>
+      <ul>
+        <li><a href="#sobre">Sobre nós</a></li>
+        <li><a href="#contato">Contato</a></li>
+        <li><a href="#">Privacidade</a></li>
+        <li><a href="#">Termos de Serviço</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Contato</h4>
+      <ul>
+        <li><a href="https://wa.me/5500000000000" target="_blank"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a></li>
+        <li><a href="#"><i class="fa-brands fa-linkedin-in"></i> LinkedIn</a></li>
+        <li><a href="mailto:contato@suaempresa.com"><i class="fa-solid fa-envelope"></i> E-mail</a></li>
+        <li><a href="#"><i class="fa-brands fa-github"></i> GitHub</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-section">
+      <h4>Redes Sociais</h4>
+      <p style="color: var(--muted); font-size: 0.95rem; margin-bottom: 15px;">Nos acompanhe nas redes sociais</p>
+      <div class="social-links">
+        <a href="#" title="LinkedIn" target="_blank"><i class="fa-brands fa-linkedin-in"></i></a>
+        <a href="#" title="GitHub" target="_blank"><i class="fa-brands fa-github"></i></a>
+        <a href="#" title="Instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Sua Empresa — Desenvolvimento de Software. Todos os direitos reservados.</p>
+  </div>
 </footer>
+
+<!-- Botão Voltar ao Topo -->
+<button id="scrollTopBtn">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<script>
+  // ===== SCROLL ANIMATIONS =====
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  };
+
+  const observer = new IntersectionObserver(function(entries) {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, observerOptions);
+
+  // Aplicar animações aos cards e observá-los
+  document.querySelectorAll('.card').forEach((card, index) => {
+    card.classList.add('fade-in');
+    card.style.transitionDelay = (index * 0.1) + 's';
+    observer.observe(card);
+  });
+
+  // Observar seções com fade-in e slide-in
+  document.querySelectorAll('.fade-in, .slide-in-left').forEach(el => {
+    if (!el.classList.contains('card')) {
+      observer.observe(el);
+    }
+  });
+
+  // ===== BOTÃO VOLTAR AO TOPO =====
+  const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+  window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+      scrollTopBtn.classList.add('show');
+    } else {
+      scrollTopBtn.classList.remove('show');
+    }
+  });
+
+  scrollTopBtn.addEventListener('click', () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+</script>
 
 </body>
 </html>
