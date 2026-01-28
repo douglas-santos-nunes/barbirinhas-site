@@ -6,8 +6,13 @@
   <title>Sua Empresa | Software Sob Medida</title>
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     :root {
       --bg: #0b1020;
       --card: #111827;
@@ -75,6 +80,78 @@
       font-weight: 500;
     }
 
+    /* ===== MOBILE MENU ===== */
+    .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 6px;
+      background: none;
+      border: none;
+      z-index: 101;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: all .3s;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    @media (max-width: 768px) {
+      .navbar {
+        padding: 20px 20px;
+      }
+
+      .menu-toggle {
+        display: flex;
+      }
+
+      .menu-toggle.active span:nth-child(1) {
+        transform: rotate(45deg) translate(10px, 10px);
+      }
+
+      .menu-toggle.active span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .menu-toggle.active span:nth-child(3) {
+        transform: rotate(-45deg) translate(7px, -7px);
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        gap: 0;
+        background: rgba(11,16,32,.95);
+        padding: 20px;
+        display: none;
+        border-bottom: 1px solid rgba(255,255,255,.05);
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 15px 0;
+        border-bottom: 1px solid rgba(255,255,255,.05);
+      }
+
+      .nav-links a:last-child {
+        border-bottom: none;
+      }
+    }
+
     /* ===== HERO ===== */
     header {
       padding: 120px 20px 100px;
@@ -119,6 +196,35 @@
     .btn:hover {
       transform: translateY(-3px);
       box-shadow: 0 0 45px rgba(56,189,248,.55);
+    }
+
+    /* ===== HERO SVG ANIMATION ===== */
+    .hero-visual {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      opacity: 0.3;
+      z-index: 1;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      360% { transform: rotate(360deg); }
+    }
+
+    .float {
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .rotate {
+      animation: rotate 8s linear infinite;
     }
 
     /* ===== SECTIONS ===== */
@@ -169,6 +275,44 @@
       color: var(--muted);
       border-top: 1px solid rgba(255,255,255,.05);
     }
+
+    /* ===== SOBRE SECTION LAYOUT ===== */
+    .about-container {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    .about-text h3 {
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .about-text p {
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin-bottom: 25px;
+      line-height: 1.8;
+    }
+
+    .about-items {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .about-items .card {
+      padding: 25px;
+    }
+
+    @media (max-width: 768px) {
+      .about-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
   </style>
 </head>
 
@@ -180,33 +324,149 @@
     <div class="logo">SE</div>
     <div class="brand-name">Sua Empresa</div>
   </div>
-  <a href="#contato" class="nav-cta">Contato</a>
+  <button class="menu-toggle" id="menuToggle">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+  <div class="nav-links" id="navLinks">
+    <a href="#servicos" class="nav-cta" style="color: var(--text); text-decoration: none;">Serviços</a>
+    <a href="#sobre" class="nav-cta" style="color: var(--text); text-decoration: none;">Sobre</a>
+    <a href="#contato" class="nav-cta">Contato</a>
+  </div>
 </div>
 
-<!-- HERO -->
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const navLinks = document.getElementById('navLinks');
+
+  menuToggle.addEventListener('click', () => {
+    menuToggle.classList.toggle('active');
+    navLinks.classList.toggle('active');
+  });
+
+  // Fechar menu ao clicar em um link
+  document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+      menuToggle.classList.remove('active');
+      navLinks.classList.remove('active');
+    });
+  });
+</script>
+
 <header>
-  <h1>Transformando ideias em <br>softwares que impulsionam negócios</h1>
+  <svg class="hero-visual" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+        <stop offset="0%" style="stop-color:#38bdf8;stop-opacity:1" />
+        <stop offset="100%" style="stop-color:#6366f1;stop-opacity:1" />
+      </linearGradient>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+        <feMerge>
+          <feMergeNode in="coloredBlur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+    <!-- Rede Neural / Conexões -->
+    <line x1="80" y1="80" x2="200" y2="150" stroke="url(#grad)" stroke-width="1.5" opacity="0.4"/>
+    <line x1="200" y1="150" x2="320" y2="100" stroke="url(#grad)" stroke-width="1.5" opacity="0.4"/>
+    <line x1="200" y1="150" x2="150" y2="280" stroke="url(#grad)" stroke-width="1.5" opacity="0.4"/>
+    <line x1="200" y1="150" x2="300" y2="280" stroke="url(#grad)" stroke-width="1.5" opacity="0.4"/>
+    <line x1="80" y1="80" x2="150" y2="280" stroke="url(#grad)" stroke-width="1.5" opacity="0.3"/>
+    <line x1="320" y1="100" x2="300" y2="280" stroke="url(#grad)" stroke-width="1.5" opacity="0.3"/>
+    
+    <!-- Nós da Rede Neural -->
+    <circle cx="80" cy="80" r="12" fill="url(#grad)" filter="url(#glow)" class="float" style="animation-delay: 0s;"/>
+    <circle cx="200" cy="150" r="16" fill="url(#grad)" filter="url(#glow)" class="float" style="animation-delay: 0.5s;"/>
+    <circle cx="320" cy="100" r="12" fill="url(#grad)" filter="url(#glow)" class="float" style="animation-delay: 1s;"/>
+    <circle cx="150" cy="280" r="12" fill="url(#grad)" filter="url(#glow)" class="float" style="animation-delay: 1.5s;"/>
+    <circle cx="300" cy="280" r="12" fill="url(#grad)" filter="url(#glow)" class="float" style="animation-delay: 2s;"/>
+    
+    <!-- Pulso no centro (IA) -->
+    <circle cx="200" cy="150" r="20" fill="none" stroke="url(#grad)" stroke-width="2" opacity="0.6" class="rotate"/>
+    
+    <!-- Pequenos símbolos técnicos -->
+    <g class="float" style="animation-delay: 0.7s;">
+      <circle cx="100" cy="320" r="3" fill="url(#grad)"/>
+      <circle cx="105" cy="320" r="3" fill="url(#grad)"/>
+      <circle cx="110" cy="320" r="3" fill="url(#grad)"/>
+    </g>
+    <g class="float" style="animation-delay: 1.2s;">
+      <rect x="270" y="30" width="4" height="4" fill="url(#grad)"/>
+      <rect x="280" y="30" width="4" height="4" fill="url(#grad)"/>
+      <rect x="290" y="30" width="4" height="4" fill="url(#grad)"/>
+    </g>
+  </svg>
+  <h1 style="position: relative; z-index: 2;">Tecnologia que<br>multiplica seus resultados</h1>
   <p>
     Criamos sistemas personalizados, automações e soluções digitais
     que aumentam produtividade e reduzem custos.
   </p>
-  <a href="#contato" class="btn">Entrar em contato</a>
+  <a href="#contato" class="btn">Falar com um especialista</a>
 </header>
 
-<section>
-  <h2>O que fazemos</h2>
+<section id="servicos">
+  <h2>Soluções que impulsionam seu negócio</h2>
   <div class="grid">
     <div class="card">
-      <h3>Sistemas</h3>
-      <p>Desenvolvimento de software sob medida, automação de processos, integrações de sistemas e soluções digitais escaláveis.</p>
+      <h3><i class="fa-solid fa-gears"></i> Automação</h3>
+      <p>Automatizamos processos repetitivos e fluxos de trabalho. Seus times focam no que realmente importa, enquanto máquinas cuidam das tarefas operacionais.</p>
     </div>
     <div class="card">
-      <h3>Automação</h3>
-      <p>Eliminamos tarefas manuais, reduzimos erros operacionais e integramos sistemas para que sua empresa produza mais, com menos esforço.</p>
+      <h3><i class="fa-solid fa-code"></i> Sistemas</h3>
+      <p>Desenvolvemos softwares personalizados e aplicações escaláveis feitas especialmente para sua empresa. Soluções robustas que crescem com você.</p>
     </div>
     <div class="card">
-      <h3>Dashboards</h3>
+      <h3><i class="fa-solid fa-laptop-code"></i> Inteligência Artificial</h3>
+      <p>Implementamos chatbots, previsões, análises inteligentes e automação com machine learning para a sua empresa.</p>
+    </div>
+  </div>
+<br>
+    <div class="grid">
+    <div class="card">
+      <h3><i class="fa-solid fa-chart-pie"></i> Dashboards</h3>
       <p>Estruturamos indicadores, métricas e visualizações que oferecem controle, transparência e suporte à gestão do negócio.</p>
+    </div>
+    <div class="card">
+      <h3><i class="fa-solid fa-diagram-project"></i> Integrações entre sistemas</h3>
+      <p>Conectamos seus sistemas, aplicações e dados. Automação total de fluxos para evitar retrabalho e erros.</p>
+    </div>
+    <div class="card">
+      <h3><i class="fa-solid fa-microchip"></i> Suporte e evolução contínua</h3>
+      <p>Você não está sozinho. Acompanhamento contínuo, melhorias periódicas e suporte técnico de qualidade.</p>
+    </div>
+  </div>
+</section>
+
+<section id="sobre">
+  <h2>Sobre nós</h2>
+  
+  <div class="about-container">
+    <div class="about-text">
+      <h3>Quem somos</h3>
+      <p>
+        Somos uma equipe apaixonada por tecnologia, dedicada a transformar ideias em soluções que fazem a diferença. Acreditamos que software de qualidade é um diferencial competitivo para empresas de qualquer tamanho.
+      </p>
+      <p>
+        Desde o primeiro dia de trabalho, você não será apenas um cliente para nós. Você será um parceiro. Entendemos seus desafios, suas metas e seus sonhos, e trabalhamos incansavelmente para transformar visões em realidade.
+      </p>
+    </div>
+
+    <div class="about-items">
+      <div class="card">
+        <h3><i class="fa-solid fa-compass"></i> Nossa Missão</h3>
+        <p>Empoderar negócios através de tecnologia inteligente, criando soluções que simplificam processos e potencializam resultados.</p>
+      </div>
+      <div class="card">
+        <h3><i class="fa-solid fa-heart"></i> Nossos Valores</h3>
+        <p>Qualidade, transparência, inovação e compromisso. Trabalharemos sempre pensando no sucesso do seu negócio.</p>
+      </div>
+      <div class="card">
+        <h3><i class="fa-solid fa-rocket"></i> Nosso Diferencial</h3>
+        <p>Combinamos expertise técnica com compreensão profunda do seu negócio. Somos parceiros, não apenas fornecedores.</p>
+      </div>
     </div>
   </div>
 </section>
