@@ -543,6 +543,34 @@
         height: 100%;
       }
     }
+    /* Mobile: timeline layout fixes for better responsiveness */
+    @media (max-width: 768px) {
+      .timeline {
+        display: block;
+      }
+
+      .timeline-item {
+        position: relative;
+        padding-left: 80px;
+        margin-bottom: 36px;
+        text-align: left;
+      }
+
+      .timeline-number {
+        position: absolute;
+        left: 20px;
+        top: 0;
+        margin: 0;
+      }
+
+      .timeline::before {
+        left: 40px;
+        right: auto;
+        width: 2px;
+        height: 100%;
+        top: 0;
+      }
+    }
   </style>
 </head>
 
